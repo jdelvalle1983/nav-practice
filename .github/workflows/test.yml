@@ -1,0 +1,14 @@
+name: "Nav Testing"                          # any name, like "Nav tests"
+on:
+  push:
+  workflow_dispatch:               # adds the "Run workflow" button
+jobs:
+  test:
+    runs-on: ubuntu-24.04                # pinned Linux version (remember the 26.04 story?)
+    steps:
+      - uses: actions/checkout@v5       # gets your code onto the runner
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"    # the version your ev-practice tests use
+      - run: pip install -r requirements.txt                   # install from requirements.txt
+      - run: pytest                   # run the tests
